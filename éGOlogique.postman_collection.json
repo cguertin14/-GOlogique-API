@@ -1,0 +1,200 @@
+{
+	"id": "836aa76f-9d09-4c97-ab4a-59b93606d7ac",
+	"name": "éGOlogique",
+	"description": "",
+	"auth": null,
+	"events": null,
+	"variables": [],
+	"order": [],
+	"folders_order": [
+		"82caf8ef-77a5-460d-9220-a608eb42075b"
+	],
+	"folders": [
+		{
+			"id": "82caf8ef-77a5-460d-9220-a608eb42075b",
+			"name": "Users",
+			"description": "",
+			"auth": null,
+			"events": null,
+			"collection": "836aa76f-9d09-4c97-ab4a-59b93606d7ac",
+			"folder": null,
+			"order": [
+				"678eefd3-61c6-449d-889d-ee82d0fe5e0d",
+				"e502f47f-b975-4fd1-afd3-7a3e17208c92",
+				"d8231ee7-326b-4233-982d-e90ec6cf4393",
+				"7543c9f0-1ba9-4f2c-98d1-77fba950aec0"
+			],
+			"folders_order": []
+		}
+	],
+	"requests": [
+		{
+			"id": "678eefd3-61c6-449d-889d-ee82d0fe5e0d",
+			"name": "Sign Up",
+			"url": "{{url}}/users",
+			"description": "",
+			"data": [
+				{
+					"key": "email",
+					"value": "cg@live.ca",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "password",
+					"value": "Charles14",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "urlencoded",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/x-www-form-urlencoded",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"method": "POST",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "1f9d60db-8c8f-4928-a897-16b1c3ba9aa4",
+						"type": "text/javascript",
+						"exec": [
+							"let token = pm.response.json().token;",
+							"pm.globals.set(\"token\", token);"
+						]
+					}
+				}
+			],
+			"folder": "82caf8ef-77a5-460d-9220-a608eb42075b",
+			"headers": "Content-Type: application/x-www-form-urlencoded\n",
+			"pathVariables": {}
+		},
+		{
+			"id": "7543c9f0-1ba9-4f2c-98d1-77fba950aec0",
+			"name": "Logout",
+			"url": "{{url}}/users/me/token",
+			"description": "",
+			"data": [],
+			"dataMode": "params",
+			"headerData": [
+				{
+					"key": "x-auth",
+					"value": "{{test}}",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"method": "DELETE",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{token}}",
+						"type": "string"
+					}
+				]
+			},
+			"events": [],
+			"folder": "82caf8ef-77a5-460d-9220-a608eb42075b",
+			"headers": "x-auth: {{test}}\n",
+			"pathVariables": {}
+		},
+		{
+			"id": "d8231ee7-326b-4233-982d-e90ec6cf4393",
+			"name": "Login",
+			"url": "{{url}}/users/login",
+			"description": "",
+			"data": [
+				{
+					"key": "email",
+					"value": "a@a.ca",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "password",
+					"value": "egologique",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "urlencoded",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/x-www-form-urlencoded",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"method": "POST",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d0df682e-908b-47f8-a230-7ee2a3cc0561",
+						"type": "text/javascript",
+						"exec": [
+							"let token = pm.response.json().token;",
+							"pm.globals.set(\"token\", token);"
+						]
+					}
+				}
+			],
+			"folder": "82caf8ef-77a5-460d-9220-a608eb42075b",
+			"headers": "Content-Type: application/x-www-form-urlencoded\n",
+			"pathVariables": {}
+		},
+		{
+			"id": "e502f47f-b975-4fd1-afd3-7a3e17208c92",
+			"name": "Get Authenticated User",
+			"url": "{{url}}/users/me",
+			"description": null,
+			"data": [],
+			"dataMode": "params",
+			"headerData": [
+				{
+					"key": "x-auth",
+					"value": "{{test}}",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"method": "GET",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{token}}",
+						"type": "string"
+					}
+				]
+			},
+			"events": null,
+			"folder": "82caf8ef-77a5-460d-9220-a608eb42075b",
+			"headers": "x-auth: {{test}}\n",
+			"pathVariables": {}
+		}
+	]
+}

@@ -1,6 +1,7 @@
 import UserController from './../controllers/userController';
 import { bearer } from './../middlewares/authenticate';
 import express from 'express';
+import { body, check } from 'express-validator/check';
 const router = express.Router();
 
 router.post('/', (req, res) => {
