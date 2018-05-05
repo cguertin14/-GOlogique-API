@@ -36,6 +36,11 @@ const UserSchema = new mongoose.Schema({
         required: false,
         default: true
     },
+    points: {
+        type: Number,
+        default: 0,
+        required: false,
+    },
     facebookId: {
         type: String,
         required: false,
@@ -66,7 +71,8 @@ UserSchema.plugin(uniqueValidator);
 
 // Methods
 UserSchema.methods.toJSON = function () {
-    return _.pick(this.toObject(), ['_id', 'email', 'firstName', 'lastName', 'firstConnection']);
+    let user = this.toObject();
+    return _.pick(user, ['_id', 'email', 'firstName', 'lastName', 'firstConnection', 'points']);
 }
 
 UserSchema.methods.generateAuthToken = async function () {
