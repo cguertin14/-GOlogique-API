@@ -10,33 +10,35 @@ import geojson from 'geojson-coords';
 import shuffle from 'shuffle-array';
 import asyncForEach from './../../utils/asyncForEach';
 
+import espacesverts from './../../../data/espacesverts.json';
 import grandsParcs from './../../../data/grandsparcs.json';
 import mobilierUrbain from './../../../data/mobilierurbaingp.json';
 import ecoterritoires from './../../../data/ecoterritoires.json';
 import collectOrganique from './../../../data/collecte-des-matieres-organiques.json';
 import collectRecycle from './../../../data/collecte-des-matieres-recyclables.json';
 import collectMenage from './../../../data/collecte-des-ordures-menageres.json';
+import vulnPluie from './../../../data/vulnerabilitepluiesabondantes2016.json';
+import vulnSecheresse from './../../../data/vulnerabilitesecheresses2016.json';
+import vulnTempete from './../../../data/vulnerabilitetempetesdestructrices2016.json';
+import vulnVague from './../../../data/vulnerabilitevagueschaleur2016.json';
 
 export default class MapController extends BaseController {
 
     async generateCoords() {
         try {
-            const dataFiles = [grandsParcs, ecoterritoires, collectMenage, collectOrganique, collectRecycle];
+            const geoJsonFiles = [grandsParcs, ecoterritoires, espacesverts];
 
             let data = [];
-
-            dataFiles.forEach(file => {
-                data = geojson(file).filter(coordinate => {
-                    if (geolib.isPointInCircle({
-                        latitude: coordinate[1],
-                        longitude: coordinate[0]
-                    }, {
-                            latitude: this.req.body.lat,
-                            longitude: this.req.body.lng
-                        }, this.req.body.range)) {
-                        return coordinate;
-                    }
-                });
+            data = geojson(geoJsonFiles[this.req.body.category]).filter(coordinate => {
+                if (geolib.isPointInCircle({
+                    latitude: coordinate[1],
+                    longitude: coordinate[0]
+                }, {
+                        latitude: this.req.body.lat,
+                        longitude: this.req.body.lng
+                    }, this.req.body.range)) {
+                    return coordinate;
+                }
             });
 
             if (data.length >= 6) {
@@ -61,7 +63,7 @@ export default class MapController extends BaseController {
             return this.res.json({ data: toReturn });
 
         } catch (e) {
-            return this.res.status(400).send(e);
+            return this.res.status(400).json({ e: e.message });
         }
     }
 }
