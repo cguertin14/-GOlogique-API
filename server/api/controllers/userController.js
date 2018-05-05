@@ -1,6 +1,5 @@
 import { User } from './../models/user';
 import _ from 'lodash';
-import { ObjectId } from 'mongodb';
 import BaseController from './baseController';
 
 export default class UserController extends BaseController {
@@ -58,5 +57,16 @@ export default class UserController extends BaseController {
             if (err) throw new Error('Could not edit user');
             return res;
         });
+    }
+
+    async leaderBoard() {
+        try {
+            User.find({}).select(['firstName','lastName','points','-_id']).sort({ points: -1 }).exec((err, users) => {
+                if (err) throw err;
+                return this.res.json({ users });
+            });
+        } catch (error) {
+            return this.res.status(500).json({ error });
+        }
     }
 }

@@ -8,12 +8,16 @@ router.post('/store', bearer, async (req, res) => {
     await new ActivityController(req, res).store();
 });
 
-router.get('/index', bearer, async (req,res) => {
+router.get('/index', bearer, async (req, res) => {
     await new ActivityController(req, res).index();
 });
 
-router.put('/finish/:id', bearer, async (req,res) => {
+router.put('/finish/:id', bearer, async (req, res) => {
     await new ActivityController(req, res).finish();
+});
+
+router.post('/generate', bearer, async (req, res) => {
+    await new ActivityController(req, res).generate();
 });
 
 export default router;
