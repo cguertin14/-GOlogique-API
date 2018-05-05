@@ -4,6 +4,7 @@ import validator from 'validator';
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcryptjs';
 import findOrCreate from 'mongoose-findorcreate';
+import uniqueValidator from 'mongoose-unique-validator';
 
 const UserSchema = new mongoose.Schema({
     email: {
@@ -11,11 +12,7 @@ const UserSchema = new mongoose.Schema({
         required: true,
         trim: true,
         minlength: 1,
-        unique: true,
-        validate: {
-            validator: validator.isEmail,
-            message: '{VALUE} is not a valid email.'
-        }
+        unique: true
     },
     password: {
         type: String,
@@ -34,6 +31,11 @@ const UserSchema = new mongoose.Schema({
         trim: true,
         minlength: 1,
     },
+    firstConnection: {
+        type: Boolean,
+        required: false,
+        default: true
+    },
     facebookId: {
         type: String,
         required: false,
@@ -48,11 +50,11 @@ const UserSchema = new mongoose.Schema({
         {
             access: {
                 type: String,
-                require: true
+                required: true
             },
             token: {
                 type: String,
-                require: true
+                required: true
             }
         }
     ]
@@ -60,13 +62,11 @@ const UserSchema = new mongoose.Schema({
 
 // Plugins
 UserSchema.plugin(findOrCreate);
+UserSchema.plugin(uniqueValidator);
 
 // Methods
 UserSchema.methods.toJSON = function () {
-    let user = this;
-    let userObject = user.toObject();
-
-    return _.pick(userObject, ['_id', 'email']);
+    return _.pick(this.toObject(), ['_id', 'email', 'firstName', 'lastName', 'firstConnection']);
 }
 
 UserSchema.methods.generateAuthToken = async function () {
@@ -95,7 +95,7 @@ UserSchema.statics.findByToken = function (token) {
 
     try {
         decoded = jwt.verify(token, process.env.JWT_SECRET);
-    } catch (e)  {
+    } catch (e) {
         return Promise.reject();
     }
 
