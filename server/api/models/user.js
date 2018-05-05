@@ -22,13 +22,27 @@ const UserSchema = new mongoose.Schema({
         required: true,
         minlength: 6,
     },
+    firstName: {
+        type: String,
+        required: true,
+        trim: true,
+        minlength: 1,
+    },
+    lastName: {
+        type: String,
+        required: true,
+        trim: true,
+        minlength: 1,
+    },
     facebookId: {
         type: String,
         required: false,
+        default: null
     },
     googleId: {
         type: String,
-        required: false
+        required: false,
+        default: null
     },
     tokens: [
         {
