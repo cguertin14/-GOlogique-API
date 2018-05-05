@@ -8,8 +8,8 @@
 	"order": [],
 	"folders_order": [
 		"82caf8ef-77a5-460d-9220-a608eb42075b",
-		"01cc7aec-7c78-4311-973b-3ef011e6bcbd",
-		"d79eefcb-a898-4a87-adf0-7f6db0449112"
+		"d79eefcb-a898-4a87-adf0-7f6db0449112",
+		"0b8dffd0-7759-4114-a863-9d20bef6859f"
 	],
 	"folders": [
 		{
@@ -22,21 +22,22 @@
 			"folder": null,
 			"order": [
 				"394d4fdc-0dc5-4808-930c-53084630e77b",
+				"7b78ebcc-01a7-4866-b01c-25294e77495b",
 				"54a4efa8-fc62-41fa-a33f-6a5f731e4be3",
 				"da74712d-51b1-48b8-aab0-033b84830ed6"
 			],
 			"folders_order": []
 		},
 		{
-			"id": "01cc7aec-7c78-4311-973b-3ef011e6bcbd",
-			"name": "Points",
+			"id": "0b8dffd0-7759-4114-a863-9d20bef6859f",
+			"name": "Feedback",
 			"description": "",
 			"auth": null,
 			"events": null,
 			"collection": "836aa76f-9d09-4c97-ab4a-59b93606d7ac",
 			"folder": null,
 			"order": [
-				"45da6a1e-6359-4653-9a32-674ab4b21b7c"
+				"eb07eb16-1a58-499b-ae39-47affb3f2b71"
 			],
 			"folders_order": []
 		},
@@ -50,8 +51,9 @@
 			"folder": null,
 			"order": [
 				"678eefd3-61c6-449d-889d-ee82d0fe5e0d",
-				"e502f47f-b975-4fd1-afd3-7a3e17208c92",
 				"d8231ee7-326b-4233-982d-e90ec6cf4393",
+				"e502f47f-b975-4fd1-afd3-7a3e17208c92",
+				"45da6a1e-6359-4653-9a32-674ab4b21b7c",
 				"7543c9f0-1ba9-4f2c-98d1-77fba950aec0",
 				"d1482ce7-7fa2-4688-8711-e2415916ef31"
 			],
@@ -122,7 +124,7 @@
 		{
 			"id": "45da6a1e-6359-4653-9a32-674ab4b21b7c",
 			"name": "Leaderboard",
-			"url": "{{url}}/points/leaderboard",
+			"url": "{{url}}/users/leaderboard",
 			"description": "",
 			"data": null,
 			"dataMode": "params",
@@ -141,7 +143,7 @@
 				]
 			},
 			"events": [],
-			"folder": "01cc7aec-7c78-4311-973b-3ef011e6bcbd",
+			"folder": "82caf8ef-77a5-460d-9220-a608eb42075b",
 			"headers": "",
 			"pathVariables": {}
 		},
@@ -260,6 +262,37 @@
 			"events": [],
 			"folder": "82caf8ef-77a5-460d-9220-a608eb42075b",
 			"headers": "",
+			"pathVariables": {}
+		},
+		{
+			"id": "7b78ebcc-01a7-4866-b01c-25294e77495b",
+			"name": "Generate Activity For Location",
+			"url": "{{url}}/activities/generate",
+			"description": "",
+			"data": [],
+			"dataMode": "urlencoded",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/x-www-form-urlencoded"
+				}
+			],
+			"method": "POST",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{token}}",
+						"type": "string"
+					}
+				]
+			},
+			"events": [],
+			"folder": "d79eefcb-a898-4a87-adf0-7f6db0449112",
+			"headers": "Content-Type: application/x-www-form-urlencoded\n",
 			"pathVariables": {}
 		},
 		{
@@ -410,6 +443,59 @@
 			"events": null,
 			"folder": "82caf8ef-77a5-460d-9220-a608eb42075b",
 			"headers": "x-auth: {{test}}\n",
+			"pathVariables": {}
+		},
+		{
+			"id": "eb07eb16-1a58-499b-ae39-47affb3f2b71",
+			"name": "Create Feedback",
+			"url": "{{url}}/feedback/store",
+			"description": "",
+			"data": [
+				{
+					"key": "address",
+					"value": "16 des sesterces",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "question",
+					"value": "Mike?",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "answer",
+					"value": "wAZow",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "urlencoded",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/x-www-form-urlencoded"
+				}
+			],
+			"method": "POST",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{token}}",
+						"type": "string"
+					}
+				]
+			},
+			"events": [],
+			"folder": "0b8dffd0-7759-4114-a863-9d20bef6859f",
+			"headers": "Content-Type: application/x-www-form-urlencoded\n",
 			"pathVariables": {}
 		}
 	]

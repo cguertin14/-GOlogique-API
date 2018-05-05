@@ -8,8 +8,8 @@ import validator      from 'express-validator';
 import rateLimiter    from './config/rateLimiter';
 import userRoutes     from './api/routes/users';
 import mapRoutes      from './api/routes/map';
-import pointRoutes    from './api/routes/points';
 import activityRoutes from './api/routes/activities';
+import feedbackRoutes from './api/routes/feedback';
 
 const port = process.env.PORT || 3000;
 const app = express();
@@ -21,8 +21,8 @@ app.use(rateLimiter);
 // Routes.
 app.use('/users', userRoutes);
 app.use('/map', mapRoutes);
-app.use('/points', pointRoutes);
 app.use('/activities', activityRoutes);
+app.use('/feedbacks', feedbackRoutes);
 
 app.listen(port, () => {
     console.log(`Server listening on port ${port}`);

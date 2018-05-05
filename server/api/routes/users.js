@@ -12,6 +12,10 @@ router.get('/me', bearer, (req, res) => {
     new UserController(req, res).me();
 });
 
+router.get('/leaderboard', bearer, async (req, res) => {
+    await new UserController(req, res).leaderBoard();
+});
+
 router.post('/login', async (req, res) => {
     await new UserController(req, res).logIn();
 });
