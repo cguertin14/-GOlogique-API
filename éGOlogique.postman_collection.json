@@ -7,9 +7,23 @@
 	"variables": [],
 	"order": [],
 	"folders_order": [
-		"82caf8ef-77a5-460d-9220-a608eb42075b"
+		"82caf8ef-77a5-460d-9220-a608eb42075b",
+		"01cc7aec-7c78-4311-973b-3ef011e6bcbd"
 	],
 	"folders": [
+		{
+			"id": "01cc7aec-7c78-4311-973b-3ef011e6bcbd",
+			"name": "Points",
+			"description": "",
+			"auth": null,
+			"events": null,
+			"collection": "836aa76f-9d09-4c97-ab4a-59b93606d7ac",
+			"folder": null,
+			"order": [
+				"45da6a1e-6359-4653-9a32-674ab4b21b7c"
+			],
+			"folders_order": []
+		},
 		{
 			"id": "82caf8ef-77a5-460d-9220-a608eb42075b",
 			"name": "Users",
@@ -22,12 +36,39 @@
 				"678eefd3-61c6-449d-889d-ee82d0fe5e0d",
 				"e502f47f-b975-4fd1-afd3-7a3e17208c92",
 				"d8231ee7-326b-4233-982d-e90ec6cf4393",
-				"7543c9f0-1ba9-4f2c-98d1-77fba950aec0"
+				"7543c9f0-1ba9-4f2c-98d1-77fba950aec0",
+				"d1482ce7-7fa2-4688-8711-e2415916ef31"
 			],
 			"folders_order": []
 		}
 	],
 	"requests": [
+		{
+			"id": "45da6a1e-6359-4653-9a32-674ab4b21b7c",
+			"name": "Leaderboard",
+			"url": "{{url}}/points/leaderboard",
+			"description": "",
+			"data": null,
+			"dataMode": "params",
+			"headerData": [],
+			"method": "GET",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{token}}",
+						"type": "string"
+					}
+				]
+			},
+			"events": [],
+			"folder": "01cc7aec-7c78-4311-973b-3ef011e6bcbd",
+			"headers": "",
+			"pathVariables": {}
+		},
 		{
 			"id": "678eefd3-61c6-449d-889d-ee82d0fe5e0d",
 			"name": "Sign Up",
@@ -44,6 +85,20 @@
 				{
 					"key": "password",
 					"value": "Charles14",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "firstName",
+					"value": "allo",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "lastName",
+					"value": "martin",
 					"description": "",
 					"type": "text",
 					"enabled": true
@@ -82,7 +137,7 @@
 		{
 			"id": "7543c9f0-1ba9-4f2c-98d1-77fba950aec0",
 			"name": "Logout",
-			"url": "{{url}}/users/me/token",
+			"url": "{{url}}/users/logout",
 			"description": "",
 			"data": [],
 			"dataMode": "params",
@@ -110,6 +165,46 @@
 			"events": [],
 			"folder": "82caf8ef-77a5-460d-9220-a608eb42075b",
 			"headers": "x-auth: {{test}}\n",
+			"pathVariables": {}
+		},
+		{
+			"id": "d1482ce7-7fa2-4688-8711-e2415916ef31",
+			"name": "Edit First Connection",
+			"url": "{{url}}/users/edit/connection",
+			"description": "",
+			"data": [
+				{
+					"key": "firstConnection",
+					"value": "0",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "urlencoded",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/x-www-form-urlencoded",
+					"description": ""
+				}
+			],
+			"method": "PUT",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{token}}",
+						"type": "string"
+					}
+				]
+			},
+			"events": [],
+			"folder": "82caf8ef-77a5-460d-9220-a608eb42075b",
+			"headers": "Content-Type: application/x-www-form-urlencoded\n",
 			"pathVariables": {}
 		},
 		{

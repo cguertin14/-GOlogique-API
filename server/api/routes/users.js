@@ -16,7 +16,7 @@ router.post('/login', async (req, res) => {
     await new UserController(req, res).logIn();
 });
 
-router.delete('/me/token', bearer, async (req, res) => {
+router.delete('/logout', bearer, async (req, res) => {
     await new UserController(req, res).logOut();
 });
 

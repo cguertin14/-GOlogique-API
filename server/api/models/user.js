@@ -50,11 +50,11 @@ const UserSchema = new mongoose.Schema({
         {
             access: {
                 type: String,
-                require: true
+                required: true
             },
             token: {
                 type: String,
-                require: true
+                required: true
             }
         }
     ]
