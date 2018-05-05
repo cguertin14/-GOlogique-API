@@ -7,6 +7,7 @@ import bodyParser from 'body-parser';
 import validator from 'express-validator';
 import rateLimiter from './config/rateLimiter';
 import userRoutes from './api/routes/users';
+import mapRoutes from './api/routes/map';
 import pointsRoutes from './api/routes/points';
 
 const port = process.env.PORT || 3000;
@@ -18,6 +19,7 @@ app.use(rateLimiter);
 
 // Routes.
 app.use('/users', userRoutes);
+app.use('/map', mapRoutes);
 app.use('/points', pointsRoutes);
 
 app.listen(port, () => {
