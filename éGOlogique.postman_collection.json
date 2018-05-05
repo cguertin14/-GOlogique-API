@@ -8,9 +8,25 @@
 	"order": [],
 	"folders_order": [
 		"82caf8ef-77a5-460d-9220-a608eb42075b",
-		"01cc7aec-7c78-4311-973b-3ef011e6bcbd"
+		"01cc7aec-7c78-4311-973b-3ef011e6bcbd",
+		"d79eefcb-a898-4a87-adf0-7f6db0449112"
 	],
 	"folders": [
+		{
+			"id": "d79eefcb-a898-4a87-adf0-7f6db0449112",
+			"name": "Activities",
+			"description": "",
+			"auth": null,
+			"events": null,
+			"collection": "836aa76f-9d09-4c97-ab4a-59b93606d7ac",
+			"folder": null,
+			"order": [
+				"394d4fdc-0dc5-4808-930c-53084630e77b",
+				"54a4efa8-fc62-41fa-a33f-6a5f731e4be3",
+				"da74712d-51b1-48b8-aab0-033b84830ed6"
+			],
+			"folders_order": []
+		},
 		{
 			"id": "01cc7aec-7c78-4311-973b-3ef011e6bcbd",
 			"name": "Points",
@@ -44,6 +60,66 @@
 	],
 	"requests": [
 		{
+			"id": "394d4fdc-0dc5-4808-930c-53084630e77b",
+			"name": "Create Activity",
+			"url": "{{url}}/activities/store",
+			"description": "",
+			"data": [
+				{
+					"key": "points",
+					"value": "234",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "name",
+					"value": "Allo",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "imageUrl",
+					"value": "http://allo.ca",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "description",
+					"value": "sfsfds",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "urlencoded",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/x-www-form-urlencoded"
+				}
+			],
+			"method": "POST",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{token}}",
+						"type": "string"
+					}
+				]
+			},
+			"events": [],
+			"folder": "d79eefcb-a898-4a87-adf0-7f6db0449112",
+			"headers": "Content-Type: application/x-www-form-urlencoded\n",
+			"pathVariables": {}
+		},
+		{
 			"id": "45da6a1e-6359-4653-9a32-674ab4b21b7c",
 			"name": "Leaderboard",
 			"url": "{{url}}/points/leaderboard",
@@ -66,6 +142,32 @@
 			},
 			"events": [],
 			"folder": "01cc7aec-7c78-4311-973b-3ef011e6bcbd",
+			"headers": "",
+			"pathVariables": {}
+		},
+		{
+			"id": "54a4efa8-fc62-41fa-a33f-6a5f731e4be3",
+			"name": "Index ",
+			"url": "{{url}}/activities/index",
+			"description": "",
+			"data": null,
+			"dataMode": "params",
+			"headerData": [],
+			"method": "GET",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{token}}",
+						"type": "string"
+					}
+				]
+			},
+			"events": [],
+			"folder": "d79eefcb-a898-4a87-adf0-7f6db0449112",
 			"headers": "",
 			"pathVariables": {}
 		},
@@ -141,14 +243,7 @@
 			"description": "",
 			"data": [],
 			"dataMode": "params",
-			"headerData": [
-				{
-					"key": "x-auth",
-					"value": "{{test}}",
-					"description": "",
-					"enabled": true
-				}
-			],
+			"headerData": [],
 			"method": "DELETE",
 			"pathVariableData": [],
 			"queryParams": [],
@@ -164,7 +259,7 @@
 			},
 			"events": [],
 			"folder": "82caf8ef-77a5-460d-9220-a608eb42075b",
-			"headers": "x-auth: {{test}}\n",
+			"headers": "",
 			"pathVariables": {}
 		},
 		{
@@ -256,6 +351,32 @@
 			],
 			"folder": "82caf8ef-77a5-460d-9220-a608eb42075b",
 			"headers": "Content-Type: application/x-www-form-urlencoded\n",
+			"pathVariables": {}
+		},
+		{
+			"id": "da74712d-51b1-48b8-aab0-033b84830ed6",
+			"name": "Finish",
+			"url": "{{url}}/activities/finish/5aedf345577d115f665d720c",
+			"description": "",
+			"data": null,
+			"dataMode": "params",
+			"headerData": [],
+			"method": "PUT",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{token}}",
+						"type": "string"
+					}
+				]
+			},
+			"events": [],
+			"folder": "d79eefcb-a898-4a87-adf0-7f6db0449112",
+			"headers": "",
 			"pathVariables": {}
 		},
 		{

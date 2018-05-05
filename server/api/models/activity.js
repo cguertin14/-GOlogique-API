@@ -20,13 +20,24 @@ const ActivitySchema = new mongoose.Schema({
         type: String,
         required: true,
         trim: true,
-        minlength: 1
+        minlength: 1,
+        validate: {
+            validator(value) {
+                return validator.isURL(value);
+            },
+            message: '{VALUE} is not a valid url!'
+        }
+    },
+    points: {
+        type: Number,
+        required: true,
     },
     users: [
         {
             completedAt: {
                 type: Number,
-                required: true
+                required: false,
+                default: moment().valueOf()
             },
             user: {
                 type: mongoose.Schema.Types.ObjectId,
@@ -45,7 +56,7 @@ const ActivitySchema = new mongoose.Schema({
 
 // Methods
 ActivitySchema.methods.toJSON = function () {
-    return _.pick(this.toObject(), ['value', 'user','createdAt']);
+    return _.pick(this.toObject(), ['name', 'description','imageUrl', 'points','users','createdAt']);
 }
 
 export const Activity = mongoose.model('Activity', ActivitySchema);

@@ -1,9 +1,11 @@
 import RoutesHelper from './routesListing';
 import userRoutes from './../routes/users';
-import pointsRoutes from './../routes/points';
+import pointRoutes from './../routes/points';
 import mapRoutes from './../routes/map';
+import activityRoutes from './../routes/activities';
 
 // List all routes.
 RoutesHelper.print('/users',  userRoutes.stack);
-RoutesHelper.print('/points', pointsRoutes.stack);
+RoutesHelper.print('/points', pointRoutes.stack);
 RoutesHelper.print('/map', mapRoutes.stack);
+RoutesHelper.print('/activity', activityRoutes.stack);
