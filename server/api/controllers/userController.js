@@ -27,7 +27,7 @@ export default class UserController extends BaseController {
             return this.res.json({ user, token });
         } catch (e) {
             return this.res.status(401).send({
-                status: e.message
+                status: 'Wrong credentials.'
             });
         }
     }

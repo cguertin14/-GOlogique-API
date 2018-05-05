@@ -1,7 +1,8 @@
 import Seeder from './seed';
 import { User } from '../../api/models/user';
-import Faker from 'faker/locale/fr_CA';
+import faker from 'faker/locale/fr_CA';
 import _ from 'lodash';
+import asyncForEach from './../../utils/asyncForEach';
 
 export default class UsersTableSeeder extends Seeder {
     async run() {
@@ -11,21 +12,18 @@ export default class UsersTableSeeder extends Seeder {
             firstName: 'Martin',
             lastName: 'Deschamps'
         }));
-        
-        _.range(0, 20).forEach(async index => {
-            const firstName = Faker.name.firstName(1),
-                  lastName  = Faker.name.lastName(1);
-            let user = new User({
-                email: Faker.internet.email(firstName, lastName, 'live.ca'),
+
+        await asyncForEach(_.range(0, 20), async index => {
+            const firstName = faker.name.firstName(1),
+                  lastName  = faker.name.lastName(1);
+            await this.create(new User({
+                email: faker.internet.email(firstName, lastName, 'live.ca'),
                 password: 'egologique',
                 firstName,
                 lastName
-            });
-
-            await this.create(user);
+            }));
         });
 
-
-        console.log('Users created!');
+        console.log('Users Seeder Done');
     }
 }

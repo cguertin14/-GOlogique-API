@@ -9,9 +9,10 @@ const PointSchema = new mongoose.Schema({
         min: 1,
         required: true
     },
-    userId: {
+    user: {
         type: mongoose.Schema.Types.ObjectId,
-        required: true
+        required: true,
+        ref: 'User'
     },
     createdAt: {
         type: Number,
@@ -23,7 +24,7 @@ const PointSchema = new mongoose.Schema({
 
 // Methods
 PointSchema.methods.toJSON = function () {
-    return _.pick(this.toObject(), ['value', 'userId','createdAt']);
+    return _.pick(this.toObject(), ['value', 'user','createdAt']);
 }
 
 export const Point = mongoose.model('Point', PointSchema);
