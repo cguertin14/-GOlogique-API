@@ -1,16 +1,15 @@
 import './../mongoose';
 import UsersTableSeeder from './users';
-import PointsTableSeeder from './points';
+import ActivitiesTableSeeder from './activities';
 import { User } from '../../api/models/user';
-import { Point } from '../../api/models/point';
+import { Activity } from '../../api/models/activity';
 
 (async () => {
     // Truncate tables
     User.remove({}, () => {});
-    Point.remove({}, () => {});
+    Activity.remove({}, () => {});
 
+    // Run seeders
     await new UsersTableSeeder().run();
-    await new PointsTableSeeder().run();
-
-    //process.exit();
+    await new ActivitiesTableSeeder().run();
 })();
