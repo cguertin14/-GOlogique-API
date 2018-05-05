@@ -2,11 +2,13 @@ import _ from 'lodash';
 import mongoose from 'mongoose';
 import validator from 'validator';
 import moment from 'moment';
+import uniqueValidator from 'mongoose-unique-validator';
 
 const FeedbackSchema = new mongoose.Schema({
     address: {
         type: String,
         required: true,
+        unique: true
     },
     opinions: [
         {
@@ -27,6 +29,9 @@ const FeedbackSchema = new mongoose.Schema({
         default: moment().valueOf()
     }
 });
+
+// Plugins
+FeedbackSchema.plugin(uniqueValidator);
 
 // Methods
 FeedbackSchema.methods.toJSON = function () {
