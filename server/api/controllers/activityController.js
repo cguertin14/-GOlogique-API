@@ -23,10 +23,7 @@ export default class ActivityController extends BaseController {
                 message: 'Activity successfully created!'
             });
         } catch (error) {
-            return this.res.status(500).json({
-                success: false,
-                message: error.message
-            });
+            return this.res.status(500).json({ error });
         }
     }
 
