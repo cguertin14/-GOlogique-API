@@ -1,13 +1,13 @@
 import './config/config.js';
 import './config/passport.js';
 import './db/mongoose';
-import cors           from 'cors';
-import express        from 'express';
-import bodyParser     from 'body-parser';
-import validator      from 'express-validator';
-import rateLimiter    from './config/rateLimiter';
-import userRoutes     from './api/routes/users';
-import mapRoutes      from './api/routes/map';
+import cors from 'cors';
+import express from 'express';
+import bodyParser from 'body-parser';
+import validator from 'express-validator';
+import rateLimiter from './config/rateLimiter';
+import userRoutes from './api/routes/users';
+import mapRoutes from './api/routes/map';
 import activityRoutes from './api/routes/activities';
 import feedbackRoutes from './api/routes/feedback';
 
