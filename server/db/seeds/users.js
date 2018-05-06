@@ -20,7 +20,8 @@ export default class UsersTableSeeder extends Seeder {
                 email: faker.internet.email(firstName, lastName, 'live.ca'),
                 password: 'egologique',
                 firstName,
-                lastName
+                lastName,
+                points: faker.random.number(999)
             }));
         });
 

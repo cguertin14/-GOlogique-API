@@ -2,33 +2,30 @@ import BaseController from './baseController';
 import { Activity } from '../models/activity';
 import _ from 'lodash';
 import { User } from '../models/user';
+import GeoPoint from 'geopoint';
+import geojson from 'geojson-coords'
+import axios from 'axios';
+
+// JSON Files
 import Google from './../../config/json/google.json';
 import grandsParcs from './../../../data/grandsparcs.json';
 import ecoTerritoires from './../../../data/ecoterritoires.json';
 import espacesVerts from './../../../data/espacesverts.json';
+import { activities } from './../../../data/activities.json';
 
 export default class ActivityController extends BaseController {
-    async store() {
-        this.req.checkBody('name', 'Name is required').notEmpty();
-        this.req.checkBody('description', 'Description is required').notEmpty();
-        this.req.checkBody('imageUrl', 'Image URL is required').notEmpty();
-        this.req.checkBody('points', 'Points are required').notEmpty();
+    async store(coords) {
+        // Call google API
+        const addr    = await axios.get(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${coords[1]},${coords[0]}&key=${Google.GEOLOCATION}`),
+              address = addr.data.results[0].formatted_address;
 
-        const errors = this.req.validationErrors();
-        if (errors) return this.res.status(406).json({ errors });
-
-        try {
-            // Create new activity await here with data
-            const data = _.pick(this.req.body, ['name', 'description', 'imageUrl', 'points']);
-            const activity = new Activity(data);
-            await activity.save();
-            return this.res.status(201).json({
-                success: true,
-                message: 'Activity successfully created!'
-            });
-        } catch (error) {
-            return this.res.status(500).json({ error });
-        }
+        // Create new activity
+        const activity = new Activity({
+            ...activities[Math.floor(Math.random()*activities.length)],
+            address,
+        });
+        await activity.save();
+        return this.res.status(201).json({ activity });
     }
 
     async index() {
@@ -46,7 +43,7 @@ export default class ActivityController extends BaseController {
         try {
             // Update activity's users
             const activity = await Activity.findByIdAndUpdate(this.req.params.id, { $push: { users: [{ user: this.user._id }] } });
-            // Update user's pointsk
+            // Update user's points
             await User.findByIdAndUpdate(this.user._id, { $inc: { points: activity.points } });
             return this.res.json({
                 success: true,
@@ -66,35 +63,44 @@ export default class ActivityController extends BaseController {
             const errors = this.req.validationErrors();
             if (errors) return this.res.status(406).json({ errors });
 
-            const data = _.pick(this.req.body, ['lat', 'lng', 'activityType']);
+            const body = _.pick(this.req.body, ['lat', 'lng', 'activityType']);
 
             // 0 => Grands parcs, 1 => Eco territoires, 2 => Espaces verts
-            if (!_.includes([0,1,2], _.toInteger(data.activityType))) {
+            if (!_.includes([0, 1, 2], _.toInteger(body.activityType))) {
                 return this.res.status(406).json({
                     success: false,
                     message: 'You must provide a correct Activity Type.'
                 });
             }
-            
+
             // Read appropriate json file and find coordinate | closest coordinate.
-            const toReturnData = await this.fileReading(_.toInteger(data.activityType));
-            return this.res.json({ data: toReturnData });
+            let data = this.fileReading(_.toInteger(body.activityType));
+            if (!data) return this.res.status(406).json({ data: { message: 'No activity found near that place.' } });
+            return await this.store(data);
         } catch (error) {
-            return this.res.status(500).json({ error });
+            return this.res.status(500).json({ error: error.message });
         }
     }
 
-    async fileReading(activityType) {
+    fileReading(activityType) {
         switch (activityType) {
             case 0: { // Grands parcs
+                return this.readData(grandsParcs);
                 break;
             }
             case 1: { // EcoTerritoires
+                return this.readData(ecoTerritoires);
                 break;
             }
             case 2: { // Espaces verts
+                return this.readData(espacesVerts);
                 break;
             }
         }
+    }
+
+    readData(data) {
+        const userLocation = new GeoPoint(_.toNumber(this.req.body.lat),_.toNumber(this.req.body.lng));
+        return geojson(data).find(coordinate => userLocation.distanceTo(new GeoPoint(coordinate[1], coordinate[0]), true) <= 1);
     }
 }

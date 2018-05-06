@@ -10,8 +10,8 @@ export default class ActivitiesTableSeeder extends Seeder {
             await this.create(new Activity({
                 name: faker.name.title(),
                 description: faker.random.words(40),
-                imageUrl: faker.image.imageUrl(400, 400),
-                points: faker.random.number(10, 1000)
+                points: faker.random.number(10, 1000),
+                address: faker.address.streetAddress(true)
             }));
         });
         console.log('Activities Seeder Done');

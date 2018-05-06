@@ -1,0 +1,24 @@
+{
+    "activities": [
+        {
+            "name": "Clean up the area",
+            "description": "Pick up as much garbage as you can."
+        },
+        {
+            "name": "Green traveling",
+            "description": "Use an eco-friendly way to get to the next destination."
+        },
+        {
+            "name": "Nature scavenger hunt",
+            "description": "Go outside and have a look at nature's beauty by searching for its beautiful pleasures!"
+        },
+        {
+            "name": "DIY Field Notebook",
+            "description": "Take the whole family outside on an outdoor expedition and record what you see in a field notebook."
+        },
+        {
+            "name": "What Can You Compost?",
+            "description": "This activity can provide answers to your main question: what household items can be composted? What can't?"
+        }
+    ]
+}
