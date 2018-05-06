@@ -75,7 +75,7 @@ export default class ActivityController extends BaseController {
 
             // Read appropriate json file and find coordinate | closest coordinate.
             let data = this.fileReading(_.toInteger(body.activityType));
-            if (!data) return this.res.status(406).json({ data: { message: 'No activity found near that place.' } });
+            if (!data) return this.res.status(406).json({ error: 'No activity found near that place.' });
             return await this.store(data);
         } catch (error) {
             return this.res.status(500).json({ error: error.message });
