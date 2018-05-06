@@ -49,7 +49,7 @@ export default class MapController extends BaseController {
             let toReturn = [];
             await asyncForEach(data, async (coords) => {
                 let addr = await axios.get(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${coords[1]},${coords[0]}&key=${Google.GEOLOCATION}`);
-                let img = await axios.get(`https://maps.googleapis.com/maps/api/streetview?size=128x128&location=${coords[1]},${coords[0]}&heading=151.78&pitch=-0.76&key=${Google.STREET_VIEW}`);
+                let img  = await axios.get(`https://maps.googleapis.com/maps/api/streetview?size=128x128&location=${coords[1]},${coords[0]}&heading=151.78&pitch=-0.76&key=${Google.STREET_VIEW}`);
                 let address = addr.data.results[0].formatted_address;
                 let image = img.config.url;
                 toReturn.push({
