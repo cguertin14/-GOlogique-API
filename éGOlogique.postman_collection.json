@@ -21,7 +21,6 @@
 			"collection": "836aa76f-9d09-4c97-ab4a-59b93606d7ac",
 			"folder": null,
 			"order": [
-				"394d4fdc-0dc5-4808-930c-53084630e77b",
 				"7b78ebcc-01a7-4866-b01c-25294e77495b",
 				"54a4efa8-fc62-41fa-a33f-6a5f731e4be3",
 				"da74712d-51b1-48b8-aab0-033b84830ed6"
@@ -61,66 +60,6 @@
 		}
 	],
 	"requests": [
-		{
-			"id": "394d4fdc-0dc5-4808-930c-53084630e77b",
-			"name": "Create Activity",
-			"url": "{{url}}/activities/store",
-			"description": "",
-			"data": [
-				{
-					"key": "points",
-					"value": "234",
-					"description": "",
-					"type": "text",
-					"enabled": true
-				},
-				{
-					"key": "name",
-					"value": "Allo",
-					"description": "",
-					"type": "text",
-					"enabled": true
-				},
-				{
-					"key": "imageUrl",
-					"value": "http://allo.ca",
-					"description": "",
-					"type": "text",
-					"enabled": true
-				},
-				{
-					"key": "description",
-					"value": "sfsfds",
-					"description": "",
-					"type": "text",
-					"enabled": true
-				}
-			],
-			"dataMode": "urlencoded",
-			"headerData": [
-				{
-					"key": "Content-Type",
-					"value": "application/x-www-form-urlencoded"
-				}
-			],
-			"method": "POST",
-			"pathVariableData": [],
-			"queryParams": [],
-			"auth": {
-				"type": "bearer",
-				"bearer": [
-					{
-						"key": "token",
-						"value": "{{token}}",
-						"type": "string"
-					}
-				]
-			},
-			"events": [],
-			"folder": "d79eefcb-a898-4a87-adf0-7f6db0449112",
-			"headers": "Content-Type: application/x-www-form-urlencoded\n",
-			"pathVariables": {}
-		},
 		{
 			"id": "45da6a1e-6359-4653-9a32-674ab4b21b7c",
 			"name": "Leaderboard",
@@ -266,10 +205,32 @@
 		},
 		{
 			"id": "7b78ebcc-01a7-4866-b01c-25294e77495b",
-			"name": "Generate Activity For Location",
+			"name": "Generate Activity From Location",
 			"url": "{{url}}/activities/generate",
-			"description": "",
-			"data": [],
+			"description": null,
+			"data": [
+				{
+					"key": "lat",
+					"value": "45.629196410563814",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "lng",
+					"value": "-73.6118914055507",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "activityType",
+					"value": "1",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				}
+			],
 			"dataMode": "urlencoded",
 			"headerData": [
 				{
@@ -290,7 +251,18 @@
 					}
 				]
 			},
-			"events": [],
+			"events": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "dc736f93-16fd-40ed-85de-66ec9238480f",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
 			"folder": "d79eefcb-a898-4a87-adf0-7f6db0449112",
 			"headers": "Content-Type: application/x-www-form-urlencoded\n",
 			"pathVariables": {}
@@ -448,7 +420,7 @@
 		{
 			"id": "eb07eb16-1a58-499b-ae39-47affb3f2b71",
 			"name": "Create Feedback",
-			"url": "{{url}}/feedback/store",
+			"url": "{{url}}/feedbacks/store",
 			"description": "",
 			"data": [
 				{

@@ -11,10 +11,14 @@ import mapRoutes      from './api/routes/map';
 import activityRoutes from './api/routes/activities';
 import feedbackRoutes from './api/routes/feedback';
 
+// Express config
 const port = process.env.PORT || 3000;
 const app = express();
-app.use(cors());
+
+// Express plugins.
+app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cors());
 app.use(validator());
 app.use(rateLimiter);
 
@@ -24,6 +28,7 @@ app.use('/map', mapRoutes);
 app.use('/activities', activityRoutes);
 app.use('/feedbacks', feedbackRoutes);
 
+// Listener.
 app.listen(port, () => {
     console.log(`Server listening on port ${port}`);
 });
