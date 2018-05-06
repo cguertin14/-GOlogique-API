@@ -1,14 +1,18 @@
-# eGOlogique API
+<p align="center">
+  <img src="public/logo.png" width="350"/>
+</p>
 
-REST API de l'application eGOlogique
+# eGOlogic API
 
-## Auteurs
+eGOlogic application's REST API
 
-Charles Guertin et Charles Morin
+## Authors
+
+Charles Guertin and Charles Morin
 
 ## Technologies
 
 * Node.js
+* JavaScript ES6 - ES7 - ES8
 * Babel
 * MongoDB
-* ES6 / ES7 / ES8
